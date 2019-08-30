@@ -61,9 +61,6 @@ public class OrderServiceImpl implements OrderService {
 	public String saveOrder(PdOrder pdOrder) throws Exception {
 		String orderId = generateId();
 		pdOrder.setOrderId(orderId);
-		pdOrder.setShippingCode("111");
-		pdOrder.setShippingName("2222");
-		System.out.println(pdOrder);
 		amqpTemplate.convertAndSend("orderQueue" , pdOrder);
 		return orderId;
 		
